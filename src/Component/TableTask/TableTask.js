@@ -5,11 +5,12 @@ import {
   Button, Paper, Table, TableBody, TableCell, TableHead, TableRow,
 } from '@material-ui/core'
 import styles from './TableTask.scss'
+
 const cx = classNames.bind(styles)
 
 
 const TableTask = ({
-   deleteTask, changeTaskPage, generateNewRows, rows,
+  deleteTask, changeTaskPage, generateNewRows, rows,
 }) => {
   let rowsLength = 1
   return (
@@ -102,5 +103,3 @@ TableTask.propTypes = {
   changeTaskPage: PropTypes.func.isRequired,
   generateNewRows: PropTypes.func.isRequired,
 }
-
-

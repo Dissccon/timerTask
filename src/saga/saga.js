@@ -44,9 +44,9 @@ export function* changeNameSaga(action) {
   try {
     yield put({
       type: CHANGE_NAME__CHANGE,
-      payload: { nameTask: action.payload.nameTask, }
+      payload: { nameTask: action.payload.nameTask },
     })
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: CHANGE_NAME__FAILURE,
       error,
@@ -56,25 +56,25 @@ export function* changeNameSaga(action) {
 
 
 export function* startTimeSaga(action) {
-  if(action.type === CREATE_NEWTASK) {
+  if (action.type === CREATE_NEWTASK) {
     yield cancel()
   }
-  const { date, } = action.payload
+  const { date } = action.payload
   try {
     yield put({
       type: START_TIME__DATA_START,
-      payload: { dateStart: new Date().getTime(), }
+      payload: { dateStart: new Date().getTime() },
     })
     let newData = date
-    while(true) {
+    while (true) {
       yield delay(1000)
       newData = new Date(newData.getTime() + 1000)
       yield put({
         type: START_TIME__INTERVAL,
-        payload: { date: newData, }
+        payload: { date: newData },
       })
     }
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: START_TIME__FAILURE,
       error,
@@ -83,25 +83,25 @@ export function* startTimeSaga(action) {
 }
 
 export function* restoreTimeSaga(action) {
-  if(action.type === CREATE_NEWTASK) {
+  if (action.type === CREATE_NEWTASK) {
     yield cancel()
   }
-  const { date, } = action.payload
+  const { date } = action.payload
   try {
     let newData = date
     yield put({
       type: RESTORE_TIME__SUCCESS,
-      payload: { date: date, }
+      payload: { date },
     })
-    while(true) {
+    while (true) {
       yield delay(1000)
       newData = new Date(newData.getTime() + 1000)
       yield put({
         type: RESTORE_TIME__INTERVAL,
-        payload: { date: newData, }
+        payload: { date: newData },
       })
     }
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: RESTORE_TIME__FAILURE,
       error,
@@ -110,9 +110,9 @@ export function* restoreTimeSaga(action) {
 }
 
 export function* changeModalSaga(action) {
-  const { isModalOpen, } = action.payload
+  const { isModalOpen } = action.payload
   try {
-    if(isModalOpen) {
+    if (isModalOpen) {
       yield put({
         type: CHANGE_MODAL__CLOSE,
       })
@@ -121,7 +121,7 @@ export function* changeModalSaga(action) {
         type: CHANGE_MODAL__OPEN,
       })
     }
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: CHANGE_MODAL__FAILURE,
       error,
@@ -136,7 +136,7 @@ export function* createNewTaskSaga(action) {
   } = action.payload
   try {
     let newRows
-    if(rows.length === 0) {
+    if (rows.length === 0) {
       newRows = [...rows, {
         id: 1,
         task: nameTask,
@@ -158,9 +158,9 @@ export function* createNewTaskSaga(action) {
       payload: {
         data: new Date(Date.UTC(70, 0, 1)),
         newRows,
-      }
+      },
     })
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: CREATE_NEWTASK__FAILURE,
       error,
@@ -170,31 +170,31 @@ export function* createNewTaskSaga(action) {
 
 export function* chooseTabsSaga(action) {
   const {
-    tabContainerValue, rowsLength
+    tabContainerValue, rowsLength,
   } = action.payload
   try {
-    if (rowsLength === 0){
+    if (rowsLength === 0) {
       yield put({
         type: CHOOSE_TABS__NOHAVE_TASK,
       })
-    } else if(tabContainerValue === 0) {
+    } else if (tabContainerValue === 0) {
       yield put(push('/'))
       yield put({
         type: CHOOSE_TABS__SUCCESS,
         payload: {
           tabContainerValue: 0,
-        }
+        },
       })
-    } else if(tabContainerValue === 1) {
+    } else if (tabContainerValue === 1) {
       yield put(push('/TaskChart'))
       yield put({
         type: CHOOSE_TABS__SUCCESS,
         payload: {
           tabContainerValue: 1,
-        }
+        },
       })
     }
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: CHOOSE_TABS__FAILURE,
       error,
@@ -208,9 +208,9 @@ export function* deleteTaskSaga(action) {
     const newRows = action.payload.rows.filter(arrIndex => arrIndex.id !== action.payload.id)
     yield put({
       type: DELETE_TASK__SUCCESS,
-      payload: { rows: newRows, }
+      payload: { rows: newRows },
     })
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: DELETE_TASK__FAILURE,
       error,
@@ -224,11 +224,11 @@ export function* changeTaskPageSaga(action) {
     yield put({
       type: CHANGE_TASKPAGE__SUCCESS,
       payload: {
-        taskPage: taskPage,
-      }
+        taskPage,
+      },
     })
     yield put(push(`/TaskPage/${taskPage}`))
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: CHANGE_TASKPAGE__FAILURE,
       error,
@@ -244,9 +244,9 @@ export function* generateNewRowsSaga() {
       type: GENERATE_NEWROWS__SUCCESS,
       payload: {
         newRows,
-      }
+      },
     })
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: GENERATE_NEWROWS__FAILURE,
       error,
@@ -261,14 +261,10 @@ export function* returnHomePageSaga() {
       type: RETURN_HOMEPAGE__SUCCESS,
     })
     yield put(push('/'))
-  } catch(error) {
+  } catch (error) {
     yield put({
       type: RETURN_HOMEPAGE__FAILURE,
       error,
     })
   }
 }
-
-
-
-

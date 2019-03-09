@@ -28,8 +28,8 @@ import {
 export default function* rootSaga() {
   yield all([
     takeLatest(CHANGE_NAME, changeNameSaga),
-    takeLatest([START_TIME,CREATE_NEWTASK],startTimeSaga),
-    takeLatest([RESTORE_TIME,CREATE_NEWTASK],restoreTimeSaga),
+    takeLatest([START_TIME, CREATE_NEWTASK], startTimeSaga),
+    takeLatest([RESTORE_TIME, CREATE_NEWTASK], restoreTimeSaga),
     takeLatest(CHANGE_MODAL, changeModalSaga),
     takeLatest(CREATE_NEWTASK, createNewTaskSaga),
     takeLatest(CHOOSE_TABS, chooseTabsSaga),

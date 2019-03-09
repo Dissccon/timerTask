@@ -53,7 +53,6 @@ export default function stateReducer(state = initialState, action) {
     }
 
 
-
     case START_TIME__DATA_START: {
       return {
         ...state,
@@ -64,7 +63,6 @@ export default function stateReducer(state = initialState, action) {
       }
     }
     case START_TIME__INTERVAL: {
-
       return {
         ...state,
         date: action.payload.date,
@@ -141,7 +139,6 @@ export default function stateReducer(state = initialState, action) {
     }
 
 
-
     case CHOOSE_TABS__NOHAVE_TASK: {
       return {
         ...state,
@@ -160,7 +157,6 @@ export default function stateReducer(state = initialState, action) {
         error: action.error,
       }
     }
-
 
 
     case DELETE_TASK__SUCCESS: {
@@ -219,8 +215,6 @@ export default function stateReducer(state = initialState, action) {
         error: action.error,
       }
     }
-
-
 
 
     default:

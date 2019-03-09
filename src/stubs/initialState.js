@@ -1,13 +1,10 @@
 const localState = localStorage.getItem('state')
 let initialState
 if (localState) {
-  let state = JSON.parse(localState)
-  console.log('state',state)
-  if (JSON.parse(localState).dateStart) {
+  const state = JSON.parse(localState)
+  if (state.dateStart) {
     initialState = {
-      date:  new Date(new Date().getTime() - new Date(state.dateStart).getTime()),
-      // date: new Date(70, 0, 1, new Date().getHours() - new Date(state.dateStart).getHours(),
-      //   new Date().getMinutes() - new Date(state.dateStart).getMinutes(), new Date().getSeconds() - new Date(state.dateStart).getSeconds()),
+      date: new Date(new Date().getTime() - new Date(state.dateStart).getTime()),
       dateStart: new Date(state.dateStart),
       nameTask: state.nameTask,
       tabContainerValue: state.tabContainerValue,

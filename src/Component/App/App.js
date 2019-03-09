@@ -6,37 +6,36 @@ import { Route, Switch, Redirect } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 
 import NodFound from '../NodFound/NodFound'
-import ContainerTable from "../ContainerTable/ContainerTable";
+import ContainerTable from '../ContainerTable/ContainerTable'
 
-import TaskPage from "../TaskPage/TaskPage";
-import { restoreTime } from "../Actions";
-
-
+import TaskPage from '../TaskPage/TaskPage'
+import { restoreTime } from '../Actions'
 
 
 class App extends Component {
-  static getDerivedStateFromProps(props){
+  static getDerivedStateFromProps(props) {
     localStorage.setItem('state', JSON.stringify({ ...props.initialState }))
     return null
   }
+
   componentDidMount() {
-    const { isRunData, date } = this.props.initialState
+    const { isRunData, date, restoreTime } = this.props
     if (isRunData) {
-      this.props.restoreTime(date)
+      restoreTime(date)
     }
   }
+
   render() {
     const { history, taskPage } = this.props
     return (
       <ConnectedRouter history={history}>
         <div>
           <Switch>
-            <Route path={`/TaskPage/${taskPage}`} component={TaskPage}/>
-            <Route path='/' component={ContainerTable}/>)} />
-            <Route component={NodFound}/>
-            <Redirect to='/NodFound'/>
+            <Route path={`/TaskPage/${taskPage}`} component={TaskPage} />
+            <Route path='/' component={ContainerTable} />
+            <Route component={NodFound} />
+            <Redirect to='/NodFound' />
           </Switch>
-
         </div>
       </ConnectedRouter>
     )
@@ -47,18 +46,20 @@ App.propTypes = {
   history: PropTypes.object.isRequired,
   taskPage: PropTypes.number.isRequired,
   restoreTime: PropTypes.func.isRequired,
+  isRunData: PropTypes.bool.isRequired,
+  date: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   initialState: state.initialState,
   taskPage: state.initialState.taskPage,
+  isRunData: state.initialState.isRunData,
+  date: state.initialState.date,
 })
 
 export default connect(
   mapStateToProps,
   {
-    restoreTime
-  }
+    restoreTime,
+  },
 )(App)
-
-

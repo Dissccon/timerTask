@@ -4,17 +4,17 @@ import classNames from 'classnames/bind'
 import {
   Button, Paper, Table, TableBody, TableCell, TableHead, TableRow,
 } from '@material-ui/core'
+import { connect } from 'react-redux'
 import styles from './TableTask.scss'
-import TaskChart from "../TaskChart/TaskChart";
-import { connect } from "react-redux";
-import { returnHomePage } from "../Actions";
+import TaskChart from '../TaskChart/TaskChart'
+import { returnHomePage } from '../Actions'
 
 const cx = classNames.bind(styles)
 
 
 const TaskPage = ({ row, returnHomePage }) => (
-  <div className={cx('taskPage')} onClick={returnHomePage}>
-    <Button className={cx('returnButton')}>
+  <div className={cx('taskPage')}>
+    <Button className={cx('returnButton')} onClick={returnHomePage}>
       return Table
     </Button>
     <Paper className={cx('paperClass')}>
@@ -43,10 +43,12 @@ const TaskPage = ({ row, returnHomePage }) => (
             >
               {new Date(row.timeStart).toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: false })}
             </TableCell>
-            <TableCell className={cx('tableCell')}>{new Date(row.timeEnd).toLocaleTimeString('en-US', {
-              timeZone: 'UTC',
-              hour12: false
-            })}</TableCell>
+            <TableCell className={cx('tableCell')}>
+              {new Date(row.timeEnd).toLocaleTimeString('en-US', {
+                timeZone: 'UTC',
+                hour12: false,
+              })}
+            </TableCell>
             <TableCell
               className={cx('tableCell')}
             >
@@ -56,7 +58,7 @@ const TaskPage = ({ row, returnHomePage }) => (
         </TableBody>
       </Table>
     </Paper>
-    <TaskChart/>
+    <TaskChart />
   </div>
 )
 
@@ -66,15 +68,15 @@ TaskPage.propTypes = {
   returnHomePage: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const row = state.initialState.rows[state.initialState.taskPage - 1]
   return {
-    row: row,
+    row,
   }
 }
 
 
 export default connect(
   mapStateToProps,
-  { returnHomePage }
+  { returnHomePage },
 )(TaskPage)

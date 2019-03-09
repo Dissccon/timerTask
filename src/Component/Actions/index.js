@@ -51,14 +51,14 @@ export const changeName = ({ target }) => ({
   },
 })
 
-export const startTime = (date) => ({
+export const startTime = date => ({
   type: START_TIME,
   payload: {
     date,
   },
 })
 
-export const restoreTime = (date) => ({
+export const restoreTime = date => ({
   type: RESTORE_TIME,
   payload: {
     date,
@@ -66,14 +66,12 @@ export const restoreTime = (date) => ({
 })
 
 
-
-
-export const closeModal = (isModalOpen) => ({
+export const closeModal = isModalOpen => ({
   type: CHANGE_MODAL,
   payload: {
     isModalOpen,
   },
-});
+})
 
 export const createNewTask = (date, nameTask, rows, dateStart) => ({
   type: CREATE_NEWTASK,
@@ -84,15 +82,15 @@ export const createNewTask = (date, nameTask, rows, dateStart) => ({
 
 export const deleteTask = (id, rows) => ({
   type: DELETE_TASK,
-  payload: { id, rows, },
+  payload: { id, rows },
 })
 
 export const chooseTabs = (tabContainerValue, rowsLength) => ({
   type: CHOOSE_TABS,
-  payload: { tabContainerValue, rowsLength},
+  payload: { tabContainerValue, rowsLength },
 })
 
-export const changeTaskPage = (taskPage) => ({
+export const changeTaskPage = taskPage => ({
   type: CHANGE_TASKPAGE,
   payload: {
     taskPage,
@@ -100,17 +98,9 @@ export const changeTaskPage = (taskPage) => ({
 })
 
 export const generateNewRows = () => ({
-  type: GENERATE_NEWROWS
+  type: GENERATE_NEWROWS,
 })
 
 export const returnHomePage = () => ({
-  type: RETURN_HOMEPAGE
+  type: RETURN_HOMEPAGE,
 })
-
-
-
-
-
-
-
-

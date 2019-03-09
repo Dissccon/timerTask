@@ -36,6 +36,3 @@ render(
   </Provider>,
   document.getElementsByClassName('app')[0],
 )
-
-
-

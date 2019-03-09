@@ -1,11 +1,11 @@
 import React from 'react'
-import generateRows from "../../helpers/generateRows";
-import TableTask from "./TableTask";
+import generateRows from '../../helpers/generateRows'
+import TableTask from './TableTask'
 
 
 it('TableTask test', () => {
   const newRows = generateRows(10, 15, 1, 30)
-  const wrapper = mount(<TableTask rows={newRows}/>)
+  const wrapper = mount(<TableTask rows={newRows} />)
   expect(wrapper.props().rows).toEqual(newRows)
   expect(wrapper.props().rows).toEqual(newRows)
   expect(wrapper.props().rows).not.toHaveLength(4)
