@@ -5,13 +5,11 @@ import {
   CHANGE_NAME__CHANGE,
   CHANGE_NAME__FAILURE,
 
-  START_TIME__DATA_START,
-  START_TIME__INTERVAL,
-  START_TIME__FAILURE,
+  SAVE_DATASTART__SUCCESS,
+  SAVE_DATASTART__FAILURE,
 
-  RESTORE_TIME__SUCCESS,
-  RESTORE_TIME__INTERVAL,
-  RESTORE_TIME__FAILURE,
+  START_TIME__SUCCESS,
+  START_TIME__FAILURE,
 
   CHANGE_MODAL__OPEN,
   CHANGE_MODAL__CLOSE,
@@ -53,23 +51,18 @@ export function* changeNameSaga(action) {
   }
 }
 
-
 export function* startTimeSaga(action) {
   if (action.type === CREATE_NEWTASK) {
     yield cancel()
   }
   const { date } = action.payload
   try {
-    yield put({
-      type: START_TIME__DATA_START,
-      payload: { dateStart: new Date().getTime() },
-    })
     let newData = date
     while (true) {
       yield delay(1000)
       newData = new Date(newData.getTime() + 1000)
       yield put({
-        type: START_TIME__INTERVAL,
+        type: START_TIME__SUCCESS,
         payload: { date: newData },
       })
     }
@@ -81,32 +74,21 @@ export function* startTimeSaga(action) {
   }
 }
 
-export function* restoreTimeSaga(action) {
-  if (action.type === CREATE_NEWTASK) {
-    yield cancel()
-  }
-  const { date } = action.payload
+export function* saveDataStartSaga(action) {
   try {
-    let newData = date
     yield put({
-      type: RESTORE_TIME__SUCCESS,
-      payload: { date },
+      type: SAVE_DATASTART__SUCCESS,
+      payload: { dateStart: new Date().getTime() },
     })
-    while (true) {
-      yield delay(1000)
-      newData = new Date(newData.getTime() + 1000)
-      yield put({
-        type: RESTORE_TIME__INTERVAL,
-        payload: { date: newData },
-      })
-    }
+    yield* startTimeSaga(action)
   } catch (error) {
     yield put({
-      type: RESTORE_TIME__FAILURE,
+      type: SAVE_DATASTART__FAILURE,
       error,
     })
   }
 }
+
 
 export function* changeModalSaga(action) {
   const { isModalOpen } = action.payload

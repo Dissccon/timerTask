@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import NodFound from '../NodFound/NodFound'
 import ContainerTable from '../ContainerTable/ContainerTable'
 import TaskPage from '../TaskPage/TaskPage'
-import { restoreTime } from '../Actions'
+import { startTime } from '../Actions'
 
 
 class App extends Component {
@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { isRunData, date, restoreTime } = this.props
+    const { isRunData, date, startTime } = this.props
     if (isRunData) {
-      restoreTime(date)
+      startTime(date)
     }
     window.addEventListener('unload', this.onUnload)
   }
@@ -54,9 +54,9 @@ App.propTypes = {
   initialState: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   taskPage: PropTypes.number.isRequired,
-  restoreTime: PropTypes.func.isRequired,
   isRunData: PropTypes.bool.isRequired,
   date: PropTypes.object.isRequired,
+  startTime: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -69,6 +69,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    restoreTime,
+    startTime,
   },
 )(App)

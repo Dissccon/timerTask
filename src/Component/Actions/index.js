@@ -2,15 +2,13 @@ export const CHANGE_NAME = 'CHANGE_NAME'
 export const CHANGE_NAME__CHANGE = 'CHANGE_NAME__CHANGE'
 export const CHANGE_NAME__FAILURE = 'CHANGE_NAME__FAILURE'
 
-export const START_TIME = 'START_TIME'
-export const START_TIME__DATA_START = 'START_TIME__DATA_START'
-export const START_TIME__INTERVAL = 'START_TIME__INTERVAL'
-export const START_TIME__FAILURE = 'START_TIME__FAILURE'
+export const SAVE_DATASTART = 'SAVE_DATASTART'
+export const SAVE_DATASTART__SUCCESS = 'SAVE_DATASTART__SUCCESS'
+export const SAVE_DATASTART__FAILURE = 'SAVE_DATASTART__FAILURE'
 
-export const RESTORE_TIME = 'RESTORE_TIME'
-export const RESTORE_TIME__SUCCESS = 'RESTORE_TIME__SUCCESS'
-export const RESTORE_TIME__INTERVAL = 'RESTORE_TIME__INTERVAL'
-export const RESTORE_TIME__FAILURE = 'RESTORE_TIME__FAILURE'
+export const START_TIME = 'START_TIME'
+export const START_TIME__SUCCESS = 'START_TIME__SUCCESS'
+export const START_TIME__FAILURE = 'START_TIME__FAILURE'
 
 export const CHANGE_MODAL = 'CHANGE_MODAL'
 export const CHANGE_MODAL__OPEN = 'CHANGE_MODAL__OPEN'
@@ -50,15 +48,15 @@ export const changeName = ({ target }) => ({
   },
 })
 
-export const startTime = date => ({
-  type: START_TIME,
+export const saveDataStart = date => ({
+  type: SAVE_DATASTART,
   payload: {
     date,
   },
 })
 
-export const restoreTime = date => ({
-  type: RESTORE_TIME,
+export const startTime = date => ({
+  type: START_TIME,
   payload: {
     date,
   },

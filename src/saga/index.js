@@ -1,8 +1,8 @@
 import { takeLatest, all } from 'redux-saga/effects'
 import {
   changeNameSaga,
+  saveDataStartSaga,
   startTimeSaga,
-  restoreTimeSaga,
   changeModalSaga,
   createNewTaskSaga,
   chooseTabsSaga,
@@ -14,8 +14,8 @@ import {
 
 import {
   CHANGE_NAME,
+  SAVE_DATASTART,
   START_TIME,
-  RESTORE_TIME,
   CHANGE_MODAL,
   CREATE_NEWTASK,
   CHOOSE_TABS,
@@ -29,8 +29,8 @@ import {
 export default function* rootSaga() {
   yield all([
     takeLatest(CHANGE_NAME, changeNameSaga),
+    takeLatest(SAVE_DATASTART, saveDataStartSaga),
     takeLatest([START_TIME, CREATE_NEWTASK], startTimeSaga),
-    takeLatest([RESTORE_TIME, CREATE_NEWTASK], restoreTimeSaga),
     takeLatest(CHANGE_MODAL, changeModalSaga),
     takeLatest(CREATE_NEWTASK, createNewTaskSaga),
     takeLatest(CHOOSE_TABS, chooseTabsSaga),

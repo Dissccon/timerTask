@@ -12,7 +12,7 @@ import NodFound from '../NodFound/NodFound'
 import TaskChart from '../TaskChart/TaskChart'
 import TableTask from '../TableTask/TableTask'
 import {
-  changeName, startTime, closeModal, createNewTask, chooseTabs, deleteTask, changeTaskPage, generateNewRows,
+  changeName, saveDataStart, closeModal, createNewTask, chooseTabs, deleteTask, changeTaskPage, generateNewRows,
 } from '../Actions'
 
 const cx = classNames.bind(styles)
@@ -21,10 +21,10 @@ const cx = classNames.bind(styles)
 class ContainerTable extends Component {
   startTimeHandlers = () => {
     const {
-      date, isButtonState, isModalOpen, nameTask, rows, dateStart, startTime, closeModal, createNewTask,
+      date, isButtonState, isModalOpen, nameTask, rows, dateStart, saveDataStart, closeModal, createNewTask,
     } = this.props
     if (isButtonState) {
-      startTime(date)
+      saveDataStart(date)
     } else if (!isButtonState && !nameTask) {
       closeModal(isModalOpen)
     } else if (!isButtonState && nameTask) {
@@ -123,7 +123,7 @@ ContainerTable.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   rows: PropTypes.array.isRequired,
   changeName: PropTypes.func.isRequired,
-  startTime: PropTypes.func.isRequired,
+  saveDataStart: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   createNewTask: PropTypes.func.isRequired,
   chooseTabs: PropTypes.func.isRequired,
@@ -140,12 +140,20 @@ const mapStateToProps = state => ({
   tabContainerValue: state.initialState.tabContainerValue,
   isModalOpen: state.initialState.isModalOpen,
   rows: state.initialState.rows,
+  changeName: PropTypes.func.isRequired,
+  saveDataStart: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  createNewTask: PropTypes.func.isRequired,
+  chooseTabs: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  changeTaskPage: PropTypes.func.isRequired,
+  generateNewRows: PropTypes.func.isRequired,
 })
 
 
 export default connect(
   mapStateToProps,
   {
-    changeName, startTime, closeModal, createNewTask, chooseTabs, deleteTask, changeTaskPage, generateNewRows,
+    changeName, saveDataStart, closeModal, createNewTask, chooseTabs, deleteTask, changeTaskPage, generateNewRows,
   },
 )(ContainerTable)

@@ -3,13 +3,11 @@ import {
   CHANGE_NAME__CHANGE,
   CHANGE_NAME__FAILURE,
 
-  START_TIME__DATA_START,
-  START_TIME__INTERVAL,
-  START_TIME__FAILURE,
+  SAVE_DATASTART__SUCCESS,
+  SAVE_DATASTART__FAILURE,
 
-  RESTORE_TIME__SUCCESS,
-  RESTORE_TIME__INTERVAL,
-  RESTORE_TIME__FAILURE,
+  START_TIME__SUCCESS,
+  START_TIME__FAILURE,
 
   CHANGE_MODAL__OPEN,
   CHANGE_MODAL__CLOSE,
@@ -52,7 +50,7 @@ export default function stateReducer(state = initialState, action) {
     }
 
 
-    case START_TIME__DATA_START: {
+    case SAVE_DATASTART__SUCCESS: {
       return {
         ...state,
         dateStart: action.payload.dateStart,
@@ -61,7 +59,14 @@ export default function stateReducer(state = initialState, action) {
         error: undefined,
       }
     }
-    case START_TIME__INTERVAL: {
+    case SAVE_DATASTART__FAILURE: {
+      return {
+        ...state,
+        error: action.error,
+      }
+    }
+
+    case START_TIME__SUCCESS: {
       return {
         ...state,
         date: action.payload.date,
@@ -69,27 +74,6 @@ export default function stateReducer(state = initialState, action) {
       }
     }
     case START_TIME__FAILURE: {
-      return {
-        ...state,
-        error: action.error,
-      }
-    }
-
-    case RESTORE_TIME__SUCCESS: {
-      return {
-        ...state,
-        date: action.payload.date,
-        error: undefined,
-      }
-    }
-    case RESTORE_TIME__INTERVAL: {
-      return {
-        ...state,
-        date: action.payload.date,
-        error: undefined,
-      }
-    }
-    case RESTORE_TIME__FAILURE: {
       return {
         ...state,
         error: action.error,
