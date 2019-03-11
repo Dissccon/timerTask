@@ -4,18 +4,16 @@ import { connect } from 'react-redux'
 import '../ContainerTable/reset.css'
 import { Route, Switch, Redirect } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
-
 import NodFound from '../NodFound/NodFound'
 import ContainerTable from '../ContainerTable/ContainerTable'
-
 import TaskPage from '../TaskPage/TaskPage'
 import { restoreTime } from '../Actions'
 
 
 class App extends Component {
-  static getDerivedStateFromProps(props) {
-    localStorage.setItem('state', JSON.stringify({ ...props.initialState }))
-    return null
+  constructor(props) {
+    super(props)
+    this.onUnload = this.onUnload.bind(this)
   }
 
   componentDidMount() {
@@ -23,6 +21,16 @@ class App extends Component {
     if (isRunData) {
       restoreTime(date)
     }
+    window.addEventListener('unload', this.onUnload)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('unload', this.onUnload)
+  }
+
+  onUnload() {
+    const { initialState } = this.props
+    localStorage.setItem('state', JSON.stringify({ ...initialState }))
   }
 
   render() {
@@ -43,6 +51,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  initialState: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   taskPage: PropTypes.number.isRequired,
   restoreTime: PropTypes.func.isRequired,

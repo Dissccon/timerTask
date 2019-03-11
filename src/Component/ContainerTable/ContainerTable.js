@@ -15,7 +15,6 @@ import {
   changeName, startTime, closeModal, createNewTask, chooseTabs, deleteTask, changeTaskPage, generateNewRows,
 } from '../Actions'
 
-
 const cx = classNames.bind(styles)
 
 
@@ -106,7 +105,6 @@ class ContainerTable extends Component {
             <Route component={NodFound} />
           </Switch>
         </div>
-
       </Fragment>
     )
   }

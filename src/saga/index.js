@@ -15,13 +15,14 @@ import {
 import {
   CHANGE_NAME,
   START_TIME,
+  RESTORE_TIME,
   CHANGE_MODAL,
   CREATE_NEWTASK,
   CHOOSE_TABS,
   CHANGE_TASKPAGE,
   DELETE_TASK,
   GENERATE_NEWROWS,
-  RETURN_HOMEPAGE, RESTORE_TIME,
+  RETURN_HOMEPAGE,
 } from '../Component/Actions'
 
 
@@ -37,7 +38,5 @@ export default function* rootSaga() {
     takeLatest(CHANGE_TASKPAGE, changeTaskPageSaga),
     takeLatest(GENERATE_NEWROWS, generateNewRowsSaga),
     takeLatest(RETURN_HOMEPAGE, returnHomePageSaga),
-
-
   ])
 }

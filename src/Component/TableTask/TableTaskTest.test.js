@@ -11,9 +11,9 @@ it('TableTask test', () => {
   expect(wrapper.props().rows).not.toHaveLength(4)
   expect(wrapper.props().rows).not.toHaveLength(5)
   let counter = 0
-  for (const key in wrapper.props().rows) {
+  Object.keys(wrapper.props().rows).forEach(() => {
     counter += 1
-  }
+  })
   expect(counter).toBeGreaterThanOrEqual(10)
   expect(counter).toBeLessThanOrEqual(15)
   expect(wrapper.props().rows[9]).toHaveProperty('id', 9)
@@ -58,16 +58,16 @@ it('TableTask test', () => {
   expect(mockFn.mock.calls[1][1]).toBe(25)
   expect(mockFn.mock.calls[2][3]).toBe(50)
   let MockCounter1 = 0
-  for (const key in mockFn.mock.results[0].value) {
+  Object.keys(mockFn.mock.results[0].value).forEach(() => {
     MockCounter1 += 1
-  }
+  })
   expect(MockCounter1).toBeGreaterThanOrEqual(10)
   expect(MockCounter1).toBeLessThanOrEqual(15)
 
   let MockCounter2 = 0
-  for (const key in mockFn.mock.results[1].value) {
+  Object.keys(mockFn.mock.results[1].value).forEach(() => {
     MockCounter2 += 1
-  }
+  })
   expect(MockCounter2).toBeGreaterThanOrEqual(20)
   expect(MockCounter2).toBeLessThanOrEqual(25)
   expect(mockFn.mock.results[1].value[19]).toHaveProperty('id', 19)
@@ -76,9 +76,9 @@ it('TableTask test', () => {
   expect(new Date(mockFn.mock.results[1].value[19].timeSpend).getUTCHours()).toBeLessThanOrEqual(12)
 
   let MockCounter3 = 0
-  for (const key in mockFn.mock.results[2].value) {
+  Object.keys(mockFn.mock.results[2].value).forEach(() => {
     MockCounter3 += 1
-  }
+  })
   expect(MockCounter3).toBeGreaterThanOrEqual(40)
   expect(MockCounter3).toBeLessThanOrEqual(60)
   expect(mockFn.mock.results[2].value[39]).toHaveProperty('id', 39)
